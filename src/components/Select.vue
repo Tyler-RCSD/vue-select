@@ -337,7 +337,7 @@
                 @keyup.esc="onEscape"
                 @keydown.up.prevent="typeAheadUp"
                 @keydown.down.prevent="typeAheadDown"
-                @keydown.enter.prevent="typeAheadSelect"
+                @keydown.enter="typeAheadSelect"
                 @keydown.tab="onTab"
                 @blur="onSearchBlur"
                 @focus="onSearchFocus"
@@ -1135,7 +1135,10 @@
         }
         let options = this.search.length ? this.filter(this.mutableOptions, this.search, this) : this.mutableOptions;
         if (this.taggable && this.search.length && !this.optionExists(this.search)) {
-          options.unshift(this.search)
+          options.push(this.search)
+        }
+        if(this.mutableValue) {
+          options = options.filter( ( el ) => !this.mutableValue.includes( el ) );
         }
         return options
       },
