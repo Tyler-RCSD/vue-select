@@ -46,7 +46,7 @@ module.exports = {
      * @return {void}
      */
     typeAheadSelect(event) {
-      if(this.search != "") {
+      if(this.search) {
         event.preventDefault()
 
         if( this.filteredOptions[ this.typeAheadPointer ] ) {
